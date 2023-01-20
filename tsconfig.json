@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+
+        "allowJs": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "strict": true,
+        "resolveJsonModule": true,
+
+        "rootDir": "src",
+        "baseUrl": ".",
+
+        "paths": {
+            "*": [
+                "node_modules"
+            ],
+            "~": [
+                "src"
+            ]
+        },
+
+        "outDir": "dist"
+    },
+    "include": [
+        "src"
+    ]
+}
