@@ -8,7 +8,7 @@ if (!process.env.BOT_TOKEN) {
     process.exit(1);
 }
 
-const shardingManager = new Discord.ShardingManager('todo', {
+const shardingManager = new Discord.ShardingManager('./dist/bot/start.js', {
     token: process.env.BOT_TOKEN
 });
 
