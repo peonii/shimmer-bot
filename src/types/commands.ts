@@ -43,6 +43,25 @@ export function Runner(object: Object, propertyKey: string) {
     Reflect.defineMetadata('cmd:runner', propertyKey, object);
 }
 
+/**
+ * Decorator function for setting the cooldown on slash commands.
+ * Cooldowns are stored in the global bot object.
+ *
+ * @param cooldownSeconds
+ */
+export function Cooldown(cooldownSeconds: number) {
+    return function (target: Function) {
+        target.prototype.cooldown = cooldownSeconds;
+    };
+}
+
+/**
+ * Decorator to declare slash command as ephemeral.
+ */
+export function Ephemeral(target: Function) {
+    target.prototype.ephemeral = true;
+}
+
 
 export class Command {
     /**

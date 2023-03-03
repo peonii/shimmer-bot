@@ -5,15 +5,28 @@ import { ShimmerDiscordEvent } from '../types/events';
 import * as Events from '../lib/events';
 import * as Commands from '../lib/commands';
 import { Command } from '../types/commands';
+import {updateCache} from '../lib/warsaw/cache';
+import {Configuration, OpenAIApi} from 'openai';
+import '../types/interaction';
+
+type UserID = string;
 
 class Bot {
     discord: Client;
     db: PrismaClient;
     commands = new Collection<string, Command>();
+    openai: OpenAIApi;
+    cooldowns = new Collection<UserID, Collection<string, Date>>();
 
     constructor() {
         this.discord = new Client({ intents: [] });
         this.db = new PrismaClient();
+
+        const configuration = new Configuration({
+            apiKey: process.env.OPENAI_KEY
+        });
+
+        this.openai = new OpenAIApi(configuration);
     }
 
     async registerEvents() {
@@ -54,6 +67,8 @@ class Bot {
     }
 
     async start() {
+        //await updateCache();
+
         await this.registerEvents();
         await this.registerCommands();
         await this.discord.login(process.env.BOT_TOKEN);

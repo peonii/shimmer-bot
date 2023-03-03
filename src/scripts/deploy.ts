@@ -7,8 +7,8 @@ import * as Commands from '../lib/commands';
 
 dotenv.config();
 
-const server = '922800899598974988';
-const client = '1065896138596700171';
+const server = '898312474531602493';
+const client = '988045225366798398';
 
 const commands: Array<RESTPostAPIApplicationCommandsJSONBody> = [];
 
